@@ -17,8 +17,8 @@ firebase.initializeApp(config);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: "select_account" });
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+googleProvider.setCustomParameters({ prompt: "select_account" });
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
@@ -77,6 +77,17 @@ export const convertCollectionsSnapshoptToMap = collections => {
   }, {});
 };
 
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+// This is not neccesary when using Firebase, it is just to mimick the use case 
+// of persistence When firebase is not used
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged(userAuth => {
+      unsubscribe();
+      resolve(userAuth);
+    }, reject)
+  })
+}  
+
+export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
 export default firebase;
