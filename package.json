@@ -6,12 +6,12 @@
     "npm": "6.4.1"
   },
   "scripts": {
-    "client": "cd client && npm start",
+    "client": "cd Client && npm start",
     "server": "nodemon server.js",
-    "build": "cd client && npm run build",
+    "build": "cd Client && npm run build",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "start": "node server.js",
-    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+    "heroku-postbuild": "cd Client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
