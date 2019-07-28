@@ -23,11 +23,6 @@ function SignUp({signUpStart}) {
     }
 
     signUpStart(displayName, email, password);
-
-    setDisplayName("");
-    setEmail("");
-    setPassword("");
-    setConfirmPassword("");
   }
 
   return (
